@@ -36,12 +36,15 @@ class Proyecto:
             'estado': self._estado
         }
 
-#dbm= 
+#dbm= database manager
+
 class Tarea:
     """
     Clase que representa una tarea individual.
     Aplica POO: Encapsulamiento y un método que modela un comportamiento.
     """
+
+    # *Método constructor*: inicializa los atributos de la tarea. 
     def __init__(self, titulo: str, fecha_limite: str, prioridad: str,
                  proyecto_id: int, descripcion: str = "", id: int = None,
                  estado: str = "Pendiente"):
