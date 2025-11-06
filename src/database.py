@@ -64,10 +64,20 @@ class DBmanager:
         cursor = conn.cursor()
 
         cursor.execute("""
-            INSERT INTO tareas (titulo, descripcion, fecha_creacion, fecha_limite, prioridad, estado, proyecto_id
+            INSERT INTO tareas (titulo, 
+                                descripcion,
+                                fecha_creacion,
+                                fecha_limite,
+                                prioridad, 
+                                estado,
+                                proyecto_id
             VALUES (?, ?, ?, ?, ?, ?, ? )) 
-            """, (Tarea._titulo, Tarea._descripcion, Tarea._fecha_creacion,
-                  Tarea._fecha_limite, Tarea._prioridad, Tarea._estado,
+            """, (Tarea._titulo, 
+                  Tarea._descripcion, 
+                  Tarea._fecha_creacion,
+                  Tarea._fecha_limite, 
+                  Tarea._prioridad,
+                  Tarea._estado,
                   Tarea._proyecto_id))
 
 

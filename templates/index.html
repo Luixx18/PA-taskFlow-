@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskFlow - Gestor de Tareas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>TaskFlow 💜</h1>
+            <a href="{{ url_for('crear_tarea_web') }}" class="btn-nueva">➕ Nueva Tarea</a>
+        </header>
+
+        <section class="proyectos">
+            <h2>Proyectos</h2>
+            <ul>
+                {% for proyecto in proyectos %}
+                <li class="proyecto">
+                    <span class="proyecto-id">#{{ proyecto._id }}</span>
+                    <span class="proyecto-nombre">{{ proyecto._nombre }}</span>
+                    <span class="proyecto-estado">{{ proyecto._estado }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="tareas">
+            <div class="columna">
+                <h3>Pendientes</h3>
+                {% for tarea in tareas if tarea._estado == 'Pendiente' %}
+                <div class="tarea">
+                    <h4>{{ tarea._titulo }}</h4>
+                    <p>Prioridad: <span class="prioridad {{ tarea._prioridad.lower() }}">{{ tarea._prioridad }}</span></p>
+                    <p>Fecha límite: {{ tarea._fecha_limite }}</p>
+                    <p>Proyecto ID: {{ tarea._proyecto_id }}</p>
+                    <a href="#" class="btn-accion">Iniciar</a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="columna">
+                <h3>En Proceso</h3>
+                {% for tarea in tareas if tarea._estado == 'En Proceso' %}
+                <div class="tarea">
+                    <h4>{{ tarea._titulo }}</h4>
+                    <p>Prioridad: <span class="prioridad {{ tarea._prioridad.lower() }}">{{ tarea._prioridad }}</span></p>
+                    <p>Fecha límite: {{ tarea._fecha_limite }}</p>
+                    <p>Proyecto ID: {{ tarea._proyecto_id }}</p>
+                    <a href="#" class="btn-accion">Terminar</a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="columna">
+                <h3>Realizadas</h3>
+                {% for tarea in tareas if tarea._estado == 'Realizado' %}
+                <div class="tarea realizada">
+                    <h4>{{ tarea._titulo }}</h4>
+                    <p>Prioridad: <span class="prioridad {{ tarea._prioridad.lower() }}">{{ tarea._prioridad }}</span></p>
+                    <p>Fecha límite: {{ tarea._fecha_limite }}</p>
+                    <p>Proyecto ID: {{ tarea._proyecto_id }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body>
+</html>
